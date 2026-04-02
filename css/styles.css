@@ -1,0 +1,331 @@
+/* Base reset & layout */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: system-ui, sans-serif;
+  background: #f5f5f5;
+  color: #222;
+  min-height: 100vh;
+}
+
+/* Header */
+header {
+  background: #2c3e50;
+  color: #fff;
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+header h1 {
+  font-size: 1.4rem;
+}
+
+#balance-display {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+/* Main layout */
+main {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto;
+  gap: 1.5rem;
+  padding: 1.5rem 2rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+#form-section {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+#chart-section {
+  grid-column: 2;
+  grid-row: 1 / 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#list-section {
+  grid-column: 1;
+  grid-row: 2;
+}
+
+section {
+  background: #fff;
+  border-radius: 8px;
+  padding: 1.25rem;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+}
+
+section h2 {
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  color: #444;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Form */
+#expense-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+#expense-form label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #555;
+}
+
+#expense-form input,
+#expense-form select {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 0.95rem;
+  width: 100%;
+}
+
+#expense-form input:focus,
+#expense-form select:focus {
+  outline: 2px solid #3498db;
+  border-color: #3498db;
+}
+
+#submit-btn {
+  margin-top: 0.5rem;
+  padding: 0.6rem 1rem;
+  background: #3498db;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+#submit-btn:hover {
+  background: #2980b9;
+}
+
+/* Form error — hidden by default */
+#form-error {
+  display: none;
+  color: #c0392b;
+  font-size: 0.85rem;
+  background: #fdecea;
+  border: 1px solid #f5c6cb;
+  border-radius: 4px;
+  padding: 0.4rem 0.75rem;
+}
+
+#form-error.visible {
+  display: block;
+}
+
+/* Transaction list — scrollable */
+#transaction-list {
+  list-style: none;
+  max-height: 320px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+#transaction-list li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #eee;
+  border-radius: 6px;
+  background: #fafafa;
+  gap: 0.5rem;
+}
+
+.transaction-name {
+  flex: 1;
+  font-weight: 500;
+}
+
+.transaction-amount {
+  font-weight: 600;
+  color: #2c3e50;
+  white-space: nowrap;
+}
+
+/* Category badges */
+.badge {
+  display: inline-block;
+  padding: 0.2rem 0.55rem;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #fff;
+  white-space: nowrap;
+}
+
+.badge-Food      { background: #FF6384; }
+.badge-Transport { background: #36A2EB; }
+.badge-Fun       { background: #FFCE56; color: #333; }
+
+/* Delete button */
+.delete-btn {
+  background: none;
+  border: 1px solid #e74c3c;
+  color: #e74c3c;
+  border-radius: 4px;
+  padding: 0.2rem 0.5rem;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+  white-space: nowrap;
+}
+
+.delete-btn:hover {
+  background: #e74c3c;
+  color: #fff;
+}
+
+/* Chart */
+#spending-chart {
+  max-width: 300px;
+  width: 100%;
+}
+
+/* Responsive */
+@media (max-width: 700px) {
+  main {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+  }
+
+  #form-section,
+  #chart-section,
+  #list-section {
+    grid-column: 1;
+    grid-row: auto;
+  }
+}
+
+/* ── Category Manager ─────────────────────────────────────── */
+#category-form {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.category-swatch {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  vertical-align: middle;
+  flex-shrink: 0;
+}
+
+#category-error {
+  display: none;
+  color: #c0392b;
+  font-size: 0.85rem;
+  background: #fdecea;
+  border: 1px solid #f5c6cb;
+  border-radius: 4px;
+  padding: 0.4rem 0.75rem;
+  margin-top: 0.4rem;
+}
+
+#category-error.visible {
+  display: block;
+}
+
+#category-list {
+  list-style: none;
+  margin-top: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+#category-list li {
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 0.6rem;
+  border: 1px solid #eee;
+  border-radius: 6px;
+  background: #fafafa;
+}
+
+#category-list .category-name {
+  flex: 1;
+  font-weight: 500;
+}
+
+/* ── Monthly Summary ──────────────────────────────────────── */
+#summary-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+#summary-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.4rem 0.6rem;
+  border: 1px solid #eee;
+  border-radius: 6px;
+  background: #fafafa;
+  font-size: 0.9rem;
+}
+
+#summary-list li .summary-month {
+  font-weight: 600;
+  color: #444;
+}
+
+#summary-list li .summary-total {
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+/* ── Sort Control ─────────────────────────────────────────── */
+#list-section label[for="sort-control"] {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #555;
+}
+
+#sort-control {
+  padding: 0.4rem 0.6rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  margin-bottom: 0.75rem;
+}
+
+#list-section label[for="sort-control"],
+#sort-control {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-right: 0.5rem;
+}
