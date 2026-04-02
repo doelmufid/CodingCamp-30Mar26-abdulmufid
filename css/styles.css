@@ -227,6 +227,54 @@ section h2 {
   align-items: center;
   gap: 0.5rem;
   flex-wrap: wrap;
+  margin-bottom: 0.75rem;
+}
+
+#category-name {
+  flex: 1;
+  min-width: 120px;
+  padding: 0.45rem 0.65rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 0.9rem;
+}
+
+#category-name:focus {
+  outline: 2px solid #3498db;
+  border-color: #3498db;
+}
+
+.color-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #555;
+  white-space: nowrap;
+}
+
+#category-color {
+  width: 36px;
+  height: 32px;
+  padding: 2px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  cursor: pointer;
+  background: none;
+}
+
+#add-category-btn {
+  padding: 0.45rem 0.9rem;
+  background: #3498db;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background 0.2s;
+  white-space: nowrap;
+}
+
+#add-category-btn:hover {
+  background: #2980b9;
 }
 
 .category-swatch {
@@ -276,6 +324,24 @@ section h2 {
 #category-list .category-name {
   flex: 1;
   font-weight: 500;
+}
+
+.remove-btn {
+  background: none;
+  border: 1px solid #e74c3c;
+  color: #e74c3c;
+  border-radius: 4px;
+  padding: 0.2rem 0.5rem;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+  white-space: nowrap;
+  margin-left: auto;
+}
+
+.remove-btn:hover {
+  background: #e74c3c;
+  color: #fff;
 }
 
 /* ── Monthly Summary ──────────────────────────────────────── */

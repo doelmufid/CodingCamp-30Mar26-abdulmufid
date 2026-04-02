@@ -149,6 +149,14 @@ function getSortedTransactions(txns, sortKey) {
   }
 }
 
+function isLightColor(hex) {
+  const c = hex.replace('#', '');
+  const r = parseInt(c.substring(0, 2), 16);
+  const g = parseInt(c.substring(2, 4), 16);
+  const b = parseInt(c.substring(4, 6), 16);
+  return (r * 299 + g * 587 + b * 114) / 1000 > 160;
+}
+
 function renderList(txns) {
   const ul = document.getElementById('transaction-list');
   ul.innerHTML = '';
@@ -161,8 +169,11 @@ function renderList(txns) {
     amountSpan.className = 'transaction-amount';
     amountSpan.textContent = '$' + amount.toFixed(2);
     const badge = document.createElement('span');
-    badge.className = 'badge badge-' + category;
+    badge.className = 'badge';
     badge.textContent = category;
+    badge.style.backgroundColor = getCategoryColor(category);
+    // ensure text contrast for light colors
+    badge.style.color = isLightColor(getCategoryColor(category)) ? '#333' : '#fff';
     const deleteBtn = document.createElement('button');
     deleteBtn.className = 'delete-btn';
     deleteBtn.dataset.id = id;
@@ -248,8 +259,10 @@ function renderCategories() {
     swatch.className = 'category-swatch';
     swatch.style.backgroundColor = color;
     const nameSpan = document.createElement('span');
+    nameSpan.className = 'category-name';
     nameSpan.textContent = name;
     const removeBtn = document.createElement('button');
+    removeBtn.className = 'remove-btn';
     removeBtn.dataset.name = name;
     removeBtn.textContent = 'Remove';
     removeBtn.addEventListener('click', () => removeCategory(name));
