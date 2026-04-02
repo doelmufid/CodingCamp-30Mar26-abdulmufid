@@ -1,4 +1,4 @@
-﻿// js/app.js - Expense and Budget Visualizer
+// js/app.js - Expense & Budget Visualizer
 
 const STORAGE_KEY = 'expense_transactions';
 const CATEGORIES_KEY = 'expense_categories';
